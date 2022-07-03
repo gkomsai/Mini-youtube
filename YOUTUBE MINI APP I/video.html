@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Video Page</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: "poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: #5a5a5a;
+        }
+
+        img {
+            cursor: pointer;
+        }
+
+        .flex_div {
+            display: flex;
+            align-items: center;
+        }
+
+        nav {
+            padding: 10px 2%;
+            justify-content: space-between;
+            background: #fff;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+            position: sticky;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+
+
+
+            z-index: 10;
+        }
+
+        .nav-right img {
+            width: 35px;
+            margin-right: 25px;
+        }
+
+        .nav-right .user-icon {
+            width: 35px;
+            border-radius: 50%;
+            margin-right: 0;
+        }
+
+        /* i {
+        margin: 20px;
+        cursor: pointer;
+        size: 10000px;
+      } */
+        .nav-left .menu-icon {
+            width: 22px;
+            margin-right: 25px;
+        }
+
+        .nav-mid .mic-icon {
+            width: 16px;
+        }
+
+        .nav-mid .search-box {
+            border: 1px solid #ccc;
+            margin-right: 15px;
+            padding: 8px 12px;
+            border-radius: 25px;
+        }
+
+        .nav-mid .search-box input {
+            width: 400px;
+            border: 0;
+            outline: 0;
+            background: transparent;
+        }
+
+        .nav-mid .search-box input img {
+            width: 15px;
+        }
+
+        .nav-mid>.search-box>button {
+            border: none;
+            outline: none;
+            background-color: white;
+
+        }
+
+
+        /* -----------video------------ */
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .play-video {
+            flex-basis: 67%;
+            height: 800px;
+            padding-left: 30px;
+     
+
+        }
+
+        .right-sidebar {
+         
+            flex-basis: 28%;
+            padding-right: 10px;
+         
+        }
+
+        .side-video-list{
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(1,1fr);
+            grid-template-rows: auto;
+           row-gap: 20px;
+     
+        } 
+        /* .side-video-list>h5{
+            margin: 1%;
+        } */
+      
+          
+    </style>
+</head>
+
+<body>
+    <nav class="flex_div">
+        <div class="nav-left flex_div"">
+            <!-- <i class=" fa-solid fa-bars menu-icon"></i> -->
+            <img src="images/menu.png" class="menu-icon">
+            <img src="https://www.gstatic.com/youtube/img/branding/youtubelogo/svg/youtubelogo.svg" width="100" alt="">
+        </div>
+        <div class="nav-mid flex_div">
+            <div class="search-box flex_div">
+                <input type="text" id="query" placeholder="Search">
+                <button>
+                    <img src="images/search.png" onclick="SearchItems()" alt="">
+                </button>
+
+            </div>
+            <img src="images/voice-search.png" class="mic-icon" alt="">
+        </div>
+        <div class="nav-right flex_div">
+            <img src="images/upload.png" alt="">
+            <img src="images/more.png" alt="">
+            <img src="images/notification.png" alt="">
+            <img src="images/Photo.jpg" class="user-icon" alt="">
+
+        </div>
+    </nav>
+
+
+    <div id="parentBox">
+        <div class="row">
+            <div class="play-video"></div>
+            <div class="right-sidebar">
+                
+                <div class="side-video-list"></div>
+                
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+
+</html>
+<script>
+    
+let clickedVideo=JSON.parse(localStorage.getItem("clickedVideo"));
+console.log(clickedVideo);
+let title=clickedVideo.title;
+let videoId=clickedVideo.videoId;
+let div=document.querySelector(".play-video");
+  
+        let iframe=document.createElement("iframe");
+        iframe.src=`https://www.youtube.com/embed/${videoId}`
+        iframe.width="100%";
+        iframe.height="70%";
+        iframe.allow="fullscreen";
+        
+        let name=document.createElement("h5");
+    name.innerText=title;
+    div.append(iframe,name);
+
+   
+
+</script>
